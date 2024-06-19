@@ -6,6 +6,7 @@ Copyright (c) 2019 - present AppSeed.us
 from flask_login import UserMixin
 
 from apps import db, login_manager
+from apps.home.models import Assets
 
 from apps.authentication.util import hash_pass
 
@@ -17,6 +18,7 @@ class Users(db.Model, UserMixin):
     username = db.Column(db.String(64), unique=True)
     email = db.Column(db.String(64), unique=True)
     password = db.Column(db.LargeBinary)
+    assets = db.relationship('Assets', backref='owner', lazy=True)
 
     def __init__(self, **kwargs):
         for property, value in kwargs.items():

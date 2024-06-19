@@ -57,6 +57,11 @@ def password_change():
 def password_change_done():
     return render_template('accounts/password_change_done.html')
 
+@blueprint.route('/assets')
+@login_required
+def assets():
+    return render_template('pages/assets-page.html')
+
 @blueprint.route('/<template>')
 @login_required
 def route_template(template):
